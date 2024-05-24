@@ -1,3 +1,5 @@
+#![allow(non_snake_case)]
+
 use dioxus::prelude::*;
 
 #[derive(Clone, Routable, Debug, PartialEq)]
@@ -10,14 +12,12 @@ fn main() {
     launch(App);
 }
 
-#[allow(non_snake_case)]
 fn App() -> Element {
     rsx! {
         Router::<Route> {}
     }
 }
 
-#[allow(non_snake_case)]
 #[component]
 pub fn Hackernews() -> Element {
     use_context_provider(|| Signal::new(PreviewState::Unset));
@@ -30,7 +30,6 @@ pub fn Hackernews() -> Element {
     }
 }
 
-#[allow(non_snake_case)]
 fn Stories() -> Element {
     let stories = use_resource(move || get_stories(10));
 
@@ -64,7 +63,6 @@ async fn resolve_story(
     }
 }
 
-#[allow(non_snake_case)]
 #[component]
 fn StoryListing(story: ReadOnlySignal<StoryItem>) -> Element {
     let mut preview_state = consume_context::<Signal<PreviewState>>();
@@ -125,7 +123,6 @@ fn StoryListing(story: ReadOnlySignal<StoryItem>) -> Element {
     }
 }
 
-#[allow(non_snake_case)]
 #[derive(Clone, Debug)]
 enum PreviewState {
     Unset,
@@ -133,7 +130,6 @@ enum PreviewState {
     Loaded(StoryPageData),
 }
 
-#[allow(non_snake_case)]
 fn Preview() -> Element {
     let preview_state = consume_context::<Signal<PreviewState>>();
 
@@ -154,7 +150,6 @@ fn Preview() -> Element {
     }
 }
 
-#[allow(non_snake_case)]
 #[component]
 fn Comment(comment: Comment) -> Element {
     rsx! {
